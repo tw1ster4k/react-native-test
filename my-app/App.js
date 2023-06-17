@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as Font from "expo-font"
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Image, Animated, Pressable,  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, Animated, TouchableOpacity  } from 'react-native';
 import Name from "./Components/Name";
 import SearchIcon from "./Components/SearchIcon";
 import Losos from "./Images/Squircle.png"
@@ -11,8 +11,65 @@ import { useState } from "react";
 
 export default function App() {
   const [amount, setAmount] = useState(0)
+  const [showQuantity, setShowQuantity] = useState(false);
+  const quantityAnimation = React.useRef(new Animated.Value(0)).current
+  const endAnimation = React.useRef(new Animated.Value(100)).current
 
-  const animate_state = {
+  const endStyle = {
+    opacity: quantityAnimation,
+    transform: [
+      {
+        translateX: endAnimation.interpolate({
+          inputRange: [0, 100],
+          outputRange: [0, 70],
+        }),
+      },
+    ],
+    marginTop:-27, marginLeft:50, height: 28, width: 27,backgroundColor: '#FF7A00'
+  }
+
+  const startStyle = {
+    opacity: quantityAnimation,
+    transform: [
+      {
+        translateX: quantityAnimation.interpolate({
+          inputRange: [0, 100],
+          outputRange: [0, 70],
+        }),
+      },
+    ],
+    marginTop:-27, marginLeft:85, height: 28, width: 27,backgroundColor: '#FF7A00'
+  }
+
+  const handleIncrement = () => {
+    setAmount(amount + 1);
+    setShowQuantity(true);
+    Animated.timing(quantityAnimation, {
+      toValue: 100,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handleDecrement = () => {
+
+    if (amount === 0) {
+      setShowQuantity(false);
+      Animated.timing(endAnimation, {
+        toValue: 200,
+        duration: 1000,
+        useNativeDriver: true,
+      }).start(); }
+    else {
+      setAmount(amount - 1);
+    }
+  };
+
+  const quantityStyle = amount ? startStyle : endStyle
+   
+
+
+/*   const animate_state = {
     start: 0,
     end:100
   }
@@ -28,7 +85,8 @@ export default function App() {
   const endAnimate = () => {
     Animated.timing(value2,{toValue:animate_state.start,useNativeDriver: true, duration: 1000 }).start()
     setAmount(amount-1)
-  }
+  } */
+
 
   return (
    <View style={styles.container}>
@@ -41,29 +99,29 @@ export default function App() {
     <Text style={styles.description}>Опаленные суши нигири с соусом терияки, луковым кремом и кунжутом.</Text>
     <View style={{borderRadius: 10, borderColor: "#FF7A00", color:"#fff", backgroundColor: "#555555",width:111, borderWidth:2,display:"flex",justifyContent:"space-around",alignItems:"center",flexDirection:"row", marginTop:12,marginLeft:50}}>
       {/* style={{height:32,width:55.5,backgroundColor:"#555555",borderColor:"#FF7A00",borderTopLeftRadius:10,borderBottomLeftRadius:10,borderWidth:2,color:"#fff",fontWeight:400,fontSize:14, marginLeft:40,marginTop:12}} */}
-      <Pressable style={{height:"100%",width:55.5, alignItems:'center'}} onPress={() => amount === 1   ? endAnimate : setAmount(amount ? amount-1 : 0)}>
+
+        
+        <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center'}} onPress={handleDecrement}>
         <Text style={styles.inner}>
           -
         </Text>
-      </Pressable>
+      </TouchableOpacity>
+     
       <Text>850 руб</Text>
       {/* style={{height:32,width:55.5,backgroundColor:"#555555",borderColor:"#FF7A00",borderTopRightRadius:10,borderBottomRightRadius:10,marginTop:-32,marginLeft:93,borderWidth:2,color:"#fff",fontWeight:400,fontSize:14}} */}
-      <Pressable style={{height:"100%",width:55.5, alignItems:'center'}} onPress={startAnimate}>
+      <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center'}} onPress={handleIncrement}>
         <Text style={styles.inner}>
           +
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
-      {
-        amount > 0 ?
-        <Animated.View style={{ transform: [{ translateX: value1.interpolate({ inputRange: [0, 100], outputRange: [0, 70] }) }],  marginTop:-27, marginLeft:85, height: 28, width: 27,backgroundColor: '#FF7A00' }}>
+    { showQuantity && (
+      <Animated.View style={quantityStyle}>
           <Text style={styles.number}>{amount}</Text>
-        </Animated.View> :
-
-        <Animated.View style={{marginLeft:-27, transform: [{ translateX: value2.interpolate({ inputRange: [0, 100], outputRange: [0, 70] }) }], height: 32, width: 27,backgroundColor: '#FF7A00' }}>
-          <Text style={styles.number}>{amount}</Text>
-        </Animated.View> 
-      }
+        </Animated.View>
+        )
+        }
+      
     <StatusBar style="auto" />   
   </View> 
   );
