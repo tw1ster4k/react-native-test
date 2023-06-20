@@ -1,14 +1,18 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, Image, Dimensions, ImageBackground  } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, ImageBackground  } from 'react-native'
+import Animated, { scrollTo, useAnimatedRef } from 'react-native-reanimated'
 import Name from './Components/Name'
 import SearchIcon from './Components/SearchIcon'
 import Losos from "./Images/Squircle.png"
 import Ugor from "./Images/Ugor.png"
 import Carousel from 'react-native-reanimated-carousel'
+import { useState } from 'react'
 
 
 const Menu2 = ({navigation}) => {
+  const aref = useAnimatedRef()
+  const [isAutoPlay, setIsAutoPlay] = useState(false)
 
     const isCarousel = React.useRef(null)
 
@@ -150,13 +154,13 @@ const Menu2 = ({navigation}) => {
                 height={320}
                 ref={isCarousel}
                 loop={true}
-                scrollAnimationDuration={1000}
-                autoPlay={true}
+                autoPlay={isAutoPlay}
+                autoPlayInterval={500}
                 data={data}
                 mode='parallax'
                 renderItem={({index}) => {
                   return (
-                    <View>
+                  <TouchableOpacity onPress={() => setIsAutoPlay(!isAutoPlay)}>
                       <ImageBackground source={data[index].image} style={styles.image}>
                       <Text style={styles.dish}>{data[index].title}</Text>
                       <Text style={styles.depiction}>{data[index].description}</Text>
@@ -174,7 +178,7 @@ const Menu2 = ({navigation}) => {
                       </TouchableOpacity>
                       </View>
                       </ImageBackground>
-                    </View>
+                    </TouchableOpacity>
                   );
                 }}
                 />
