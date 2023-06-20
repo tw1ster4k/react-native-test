@@ -2,7 +2,7 @@ import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
 
-const CarouselItem = ({data, index}) => {
+const CarouselItem = (data) => {
     const styles = StyleSheet.create({
         image:{
             height:320
@@ -32,8 +32,8 @@ const CarouselItem = ({data, index}) => {
           },
     })
   return (
-    <View key={index}>
-            <Image source={ data.image} style={styles.image} />
+    <View>
+            <Image source={data.image} style={styles.image} />
             <Text style={styles.dish}>{data.title}</Text>
             <Text style={styles.depiction}>{data.description}</Text>
             <View style={{borderRadius:10,color:"#fff", backgroundColor: "#555555",width:111,display:"flex", alignItems:"center",flexDirection:"row",justifyContent:"space-around", marginTop:12,marginLeft:52.3,position:"relative", zIndex:3}}>

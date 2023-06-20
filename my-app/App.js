@@ -15,7 +15,7 @@ export default function App() {
       <Stack.Screen
         name="Меню"
         component={Menu2}
-      />
+        />
       <Stack.Screen name="Салаты" component={Salads} />
     </Stack.Navigator>
   </NavigationContainer>

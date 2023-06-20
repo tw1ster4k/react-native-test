@@ -1,12 +1,11 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity  } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, Image, Dimensions, ImageBackground  } from 'react-native'
 import Name from './Components/Name'
 import SearchIcon from './Components/SearchIcon'
 import Losos from "./Images/Squircle.png"
 import Ugor from "./Images/Ugor.png"
-import Carousel from "react-native-snap-carousel";
-import CarouselItem from './Components/CarouselItem'
+import Carousel from 'react-native-reanimated-carousel'
 
 
 const Menu2 = ({navigation}) => {
@@ -16,7 +15,7 @@ const Menu2 = ({navigation}) => {
     const styles = StyleSheet.create({
         container: {
             width:393,
-            height:1853,
+            height:"100%",
             backgroundColor: '#151515',
             overflow:'scroll'
           },
@@ -36,8 +35,6 @@ const Menu2 = ({navigation}) => {
             borderRadius:10,
             marginLeft:10,
             marginTop:24,
-            textAlign:"center",
-            
           },
           name:{
             marginTop:24,
@@ -80,13 +77,10 @@ const Menu2 = ({navigation}) => {
                 borderWidth:2,
                 borderColor:"#555555",
           },
-          carousel:{
-            height:320,
-            marginTop:16,
-            flex:1,
-          }, 
           image:{
-            height:320
+            position:'absolute',
+            height:320,
+            width:244
           },
           minus:{
             fontWeight:400,
@@ -100,21 +94,39 @@ const Menu2 = ({navigation}) => {
             color:"#fff",
             marginLeft: 10
           },
-          dish:{
-            fontWeight:600,
-            fontSize:18,
-            color:"#ffffff",
-          },
           depiction:{
+            position:'absolute',
             fontWeight:400,
             fontSize:13,
             color:"#fff",
             width:196,
+            marginLeft:24,
+            bottom:64
           },
+          dish:{
+            fontWeight:600,
+            fontSize:18,
+            color:"#ffffff",
+            marginLeft:24,
+            position:"relative",
+            bottom:-130
+          },
+          card:{
+            flexDirection:'column',
+            justifyContent:'flex-end'
+          },
+          warning:{
+            width:368,
+            marginTop:70,
+            marginLeft:10,
+            fontWeight:400,
+            fontSize:14,
+            color:"#bbb"
+          }
     })
     const category = ["Салаты","Холодные закуски","Горячие закуски","Икорный бар","Морепродукты","Супы","Крупа и паста","Горячее","Мангал","Тесто и начинка"]
     
-    const data = [{title:"Нигири лосось 2 шт.", description:"Опаленные суши нигири с соусом терияки, луковым кремом и кунжутом.", image:Losos, price:450}, {title:"Сашими угорь", description:"Сашими (нарезка из охлажденной рыбы) угорь с свежим миксом овощей и листьями салата, политые соусом унаги", image:Ugor, price:720},]
+    const data = [{title:"Нигири лосось 2 шт.", description:"Опаленные суши нигири с соусом терияки, луковым кремом и кунжутом." ,image:Losos, price:450}, {title:"Сашими угорь", description:"Сашими (нарезка из охлажденной рыбы) угорь с свежим миксом овощей и листьями салата, политые соусом унаги" ,image:Ugor, price:720},]
 
 
   return (
@@ -132,14 +144,44 @@ const Menu2 = ({navigation}) => {
             )}
         </View>
         <Text style={styles.tab}>Блюда от шефа</Text>
-                <Carousel 
-                data={data}
+              <View style={{flex: 1, marginTop:16}}>
+              <Carousel 
+                width={393}
+                height={320}
                 ref={isCarousel}
-                renderItem={CarouselItem}
-                sliderWidth={393}
-                itemWidth={224}
-                useScrollView={true}
+                loop={true}
+                scrollAnimationDuration={1000}
+                autoPlay={true}
+                data={data}
+                mode='parallax'
+                renderItem={({index}) => {
+                  return (
+                    <View>
+                      <ImageBackground source={data[index].image} style={styles.image}>
+                      <Text style={styles.dish}>{data[index].title}</Text>
+                      <Text style={styles.depiction}>{data[index].description}</Text>
+                      <View style={{borderRadius:10,color:"#fff", backgroundColor: "#555555",width:111,display:"flex", alignItems:"center",flexDirection:"row",justifyContent:"space-around",marginLeft:24,position:"absolute",bottom:20,zIndex:3}}>
+                      <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center',}} >
+                      <Text style={styles.minus}>
+                          -
+                      </Text>
+                      </TouchableOpacity>
+                      <Text>{data[index].price} руб</Text>
+                      <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center'}}>
+                      <Text style={styles.plus}>
+                        +
+                      </Text>
+                      </TouchableOpacity>
+                      </View>
+                      </ImageBackground>
+                    </View>
+                  );
+                }}
                 />
+              </View>
+
+              <Text style={styles.warning}t>Уважаемые гости, если у Вас есть аллергия на какой-либо продукт, пожалуйста, предупредите об этом Вашего официанта. Меню является рекламной продукцией нашего ресторана. Утвержденное контрольное меню с выходами блюд и сведениями о пищевой ценности готовой продукции: калорийности, содержании белков, жиров, углеводов находится в уголке потребителя и предоставляется по первому Вашему требованию.</Text>
+                
         
     <StatusBar style="auto" />   
     </ScrollView>

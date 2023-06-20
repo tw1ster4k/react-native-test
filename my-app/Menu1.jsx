@@ -241,14 +241,17 @@ export default function Menu1() {
         <Text style={styles.dish}>Рис с креветками</Text>
         <Text style={styles.depiction}>Сочный и рассыпчатый рис с жареными овощами и обжаренными тигровыми креветками, декорируется бобами эдамамэ</Text>
         <View style={{borderBottomLeftRadius:10,borderTopLeftRadius:10,color:"#fff", backgroundColor: "#555555",width:111,display:"flex", alignItems:"center",flexDirection:"row",justifyContent:"space-around", marginTop:12,marginLeft:52.3,position:"relative", zIndex:3}}>
+          {total ?  
         <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center',}} onPress={riceDecrement}>
         <Text style={styles.minus}>
           -
         </Text>
       </TouchableOpacity>
+          : "" }
       <Text>690 руб</Text>
       <TouchableOpacity style={{height:"100%",width:55.5, alignItems:'center'}} onPress={riceIncrement}>
         <Text style={styles.plus}>
+          
           +
         </Text>
       </TouchableOpacity>
