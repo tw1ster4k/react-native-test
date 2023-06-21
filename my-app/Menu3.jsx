@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import {StyleSheet, View, TouchableOpacity, ScrollView, Image, Text, ImageBackground} from 'react-native'
+import {StyleSheet, View, TouchableOpacity, ScrollView, Image, Text, ImageBackground, Pressable} from 'react-native'
 import Name from './Components/Name'
 import LososCard from "./Images/LososCard.png"
 import Plate from './Components/Plate'
@@ -29,9 +29,9 @@ const Menu3 = () => {
             <Plate style={styles.svg} />
             <Text style={styles.mass}>92 гр</Text>
             <Text style={styles.price}>390 руб</Text>
-            <TouchableOpacity style={styles.button1}>
+            <Pressable style={styles.button1}>
                 <Text style={styles.plus}>+ Добавить</Text>
-            </TouchableOpacity>
+            </Pressable>
         </View>
         <View style={styles.card}>
         <Image source={Sushi} style={styles.imgCard} />
@@ -43,17 +43,17 @@ const Menu3 = () => {
             <View style={styles.button2}>
                 {
                     amount ? 
-                    <TouchableOpacity style={styles.buttonMinus} onPress={() => setAmount(amount-1)}>
+                    <Pressable style={styles.buttonMinus} onPress={() => setAmount(amount-1)}>
                         <Text style={styles.minusText}>-</Text>
-                    </TouchableOpacity> : ""
+                    </Pressable> : ""
                     }
                     {
                         amount ? 
                         <Text style={styles.amount}>{amount}</Text> : ""
                     }
-                    <TouchableOpacity style={amount ? styles.buttonPlus : styles.buttonPlusNotAmount} onPress={() => setAmount(amount+1)}>
+                    <Pressable style={amount ? styles.buttonPlus : styles.buttonPlusNotAmount} onPress={() => setAmount(amount+1)}>
                         <Text style={styles.plusText}>+</Text>
-                    </TouchableOpacity>
+                    </Pressable>
             </View>
         </View>
     <StatusBar style='auto' />
