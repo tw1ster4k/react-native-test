@@ -46,10 +46,10 @@ const Menu2 = ({navigation}) => {
       marginTop:24,
       color:"#fff",
       borderWidth:1,
-      borderColor:"#000000"
+      borderColor:"#000000",
     },
     name:{
-      marginTop:24,
+      marginTop:64,
       marginLeft:"22.5%",
     },
     icon:{
@@ -163,7 +163,7 @@ const Menu2 = ({navigation}) => {
     color:"#1c1c1c"
   },
   name:{
-    marginTop:24,
+    marginTop:64,
     marginLeft:"22.5%",
   },
   icon:{
@@ -275,7 +275,7 @@ const Menu2 = ({navigation}) => {
         <Text style={styles.tab}>Меню</Text>
         <View style={styles.categories}>
             {category.map((el, index) => 
-                <Pressable key={index} style={styles.category} onPress={() => navigation.navigate(`${el}`, {name:el})}>
+                <Pressable key={index} style={styles.category} onPress={() => navigation.navigate(el)}>
                     <Text style={styles.title}>{el}</Text>
                 </Pressable>
             )}
@@ -283,7 +283,7 @@ const Menu2 = ({navigation}) => {
         <Text style={styles.warning}t>Уважаемые гости, если у Вас есть аллергия на какой-либо продукт, пожалуйста, предупредите об этом Вашего официанта. Меню является рекламной продукцией нашего ресторана. Утвержденное контрольное меню с выходами блюд и сведениями о пищевой ценности готовой продукции: калорийности, содержании белков, жиров, углеводов находится в уголке потребителя и предоставляется по первому Вашему требованию.</Text>
     </ScrollView>
         <View style={styles.footer}>
-              <Pressable style={styles.homeButton} onPress={() => navigation.navigate('Меню', {name:"Меню"})}>
+              <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
               { subject ?
               <HomeWhite />
                 :
@@ -297,7 +297,7 @@ const Menu2 = ({navigation}) => {
                   <Subject />
                 }
               </Pressable>
-              <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное", {name:"Избранное"})}>
+              <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное")}>
                   <Text style={styles.price}>{price ? `${price} руб` : 'Корзина'}</Text>
                   <Text style={styles.quantity}>{basket.length ?  `${basket.length} товаров` : 'пусто'}</Text>
               </Pressable>

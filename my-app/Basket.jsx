@@ -25,7 +25,7 @@ const Basket = ({navigation}) => {
             overflow:"scroll"
         },
         name:{
-            marginTop:24,
+            marginTop:64,
             marginLeft:"22.5%",
           },
           text:{
@@ -100,7 +100,7 @@ const Basket = ({navigation}) => {
             overflow:'scroll'
         },
         name:{
-            marginTop:24,
+            marginTop:64,
             marginLeft:"22.5%",
           },
           text:{
@@ -182,9 +182,10 @@ const Basket = ({navigation}) => {
                 :
             <SearchIcon style={styles.icon} />
             }
+        
         </ScrollView>
         <View style={styles.footer}>
-            <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню", {name: "Меню"})}>
+            <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
                 {subject ?
                 <HomeWhite />
                 :
@@ -198,7 +199,7 @@ const Basket = ({navigation}) => {
                 <Subject />
                 }
             </Pressable>
-            <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное", {name:"Избранное"})}>
+            <Pressable style={styles.favorites} onPress={() =>  navigation.navigate("Избранное")}>
                 <Text style={styles.price}>{price ? `${price} руб` : 'Корзина'}</Text>
                 <Text style={styles.quantity}>{basket.length ?  `${basket.length} товаров` : 'пусто'}</Text>
             </Pressable>

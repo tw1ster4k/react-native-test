@@ -43,7 +43,7 @@ const Salads = ({navigation}) => {
       borderColor:"#000000"
     },
     name:{
-      marginTop:24,
+      marginTop:64,
       marginLeft:"22.5%",
     },
     icon:{
@@ -167,7 +167,7 @@ const Salads = ({navigation}) => {
       color:"#1c1c1c"
     },
     name:{
-      marginTop:24,
+      marginTop:64,
       marginLeft:"22.5%",
     },
     icon:{
@@ -270,7 +270,8 @@ const Salads = ({navigation}) => {
         const salads = useSelector((state) => state.salads)
         const price = useSelector((state) => state.price)
         const basket = useSelector((state) => state.favorites)
-    
+
+
 
   return (
     <View>
@@ -293,14 +294,14 @@ const Salads = ({navigation}) => {
         <View key={index} style={styles.card}>
             <Text style={styles.title}>{el.title}</Text>
             <View style={styles.button}>
-        <Pressable style={{height:"100%",width:55.5, alignItems:'center',}} >
+        <Pressable style={{height:"100%",width:55.5, alignItems:'center',}} onPress={() => dispatch({type:'DEL_FOOD', payload:el})} >
         <Text style={styles.minus}>
           -
         </Text>
       </Pressable>
       <Text style={styles.cost}>{el.price} руб</Text>
       <Pressable style={{height:"100%",width:55.5, alignItems:'center'}} >
-        <Text style={styles.plus}>
+        <Text style={styles.plus} onPress={() => dispatch({type:"ADD_FOOD", payload:el})}>
           +
         </Text>
       </Pressable>
@@ -312,7 +313,7 @@ const Salads = ({navigation}) => {
     <StatusBar style="auto" />   
     </ScrollView>
     <View style={styles.footer}>    
-          <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню", {name:"Меню"})}>
+          <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
             {subject ?
               <HomeWhite />
                 :
@@ -326,7 +327,7 @@ const Salads = ({navigation}) => {
               <Subject />
             }
           </Pressable>
-          <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное", {name:"Избранное"})}>
+          <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное")}>
             <Text style={styles.price}>{price ? `${price} руб` : 'Корзина'}</Text>
             <Text style={styles.quantity}>{basket.length ? `${basket.length} товаров` : "пусто"}</Text>
           </Pressable>
