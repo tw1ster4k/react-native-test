@@ -4,7 +4,8 @@ import {store} from "./store"
 import {NavigationContainer} from "@react-navigation/native"
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import Menu2 from "./Menu2"
-import Salads from "./Components/Salads"
+import Salads from "./Salads"
+import Basket from "./Basket"
 
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,7 @@ export default function App() {
         component={Menu2}
         />
       <Stack.Screen name="Салаты" component={Salads} />
+      <Stack.Screen name="Избранное" component={Basket} />
     </Stack.Navigator>
   </NavigationContainer>
       </Provider>

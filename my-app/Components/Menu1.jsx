@@ -2,12 +2,12 @@ import * as React from "react"
 import * as Font from "expo-font"
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Image, Animated, TouchableOpacity, ScrollView  } from 'react-native';
-import Name from "./Components/Name";
-import SearchIcon from "./Components/SearchIcon";
+import Name from "./Name";
+import SearchIcon from "./SearchIcon";
 import Losos from "./Images/Squircle.png";
 import Ugor from "./Images/Ugor.png";
-import Cloud from "./Components/Cloud";
-import Triangle from "./Components/Triangle";
+import Cloud from "./Cloud";
+import Triangle from "./Triangle";
 import Rice from "./Images/Rice.png"
 import { useState } from "react";
 

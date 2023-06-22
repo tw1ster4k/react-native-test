@@ -1,9 +1,9 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import {StyleSheet, View, TouchableOpacity, ScrollView, Image, Text, ImageBackground, Pressable} from 'react-native'
-import Name from './Components/Name'
+import Name from './Name'
 import LososCard from "./Images/LososCard.png"
-import Plate from './Components/Plate'
+import Plate from './Plate'
 import Sushi from "./Images/Sushi.png"
 import White from "./Images/white.jpg"
 import { useState } from 'react'
