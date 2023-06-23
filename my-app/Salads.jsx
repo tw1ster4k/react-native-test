@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, TouchableOpacity, Text, StyleSheet, TextInput, Pressable } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, TextInput, Pressable, Animated, LayoutAnimation, NativeModules } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import Name from './Components/Name'
 import SearchIcon from './Components/SearchIcon'
@@ -10,10 +10,35 @@ import NameWhite from './Components/NameWhite'
 import SearchIconWhite from './Components/SearchIconWhite'
 import HomeWhite from './Components/HomeWhite'
 import SubjectWhite from './Components/SubjectWhite'
+import { useState } from 'react'
+
+const {UIManager} = NativeModules
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Salads = ({navigation}) => {
+  const [w, setW] = useState(117)
   const dispatch = useDispatch()
   const subject = useSelector((state) => state.subject)
+
+const maxOnPress = () => {
+    LayoutAnimation.spring();
+    if(w === 117) {
+      setW(w + 26)
+    }else{
+
+    }
+}
+
+const minOnPress = (x) => {
+  LayoutAnimation.spring();
+  if(w === 143 && x === 0) {  
+    setW(w - 26)
+  }else{
+
+  }
+}
 
   const stylesBlack ={
     container: {
@@ -64,7 +89,8 @@ const Salads = ({navigation}) => {
       backgroundColor:"#222222",
       borderRadius:10,
       borderWidth:2,
-      borderColor:"#555555"
+      borderColor:"#555555",
+      height:118
     },
     title:{
       width:336,
@@ -125,17 +151,38 @@ const Salads = ({navigation}) => {
       fontSize:10
     },
     button:{
+      height:40,
+      width:114,
       borderRadius:10,
       color:"#fff", 
       backgroundColor: "#555555",
-      width:111,
       display:"flex", 
       alignItems:"center",
       flexDirection:"row",
       justifyContent:"space-around", 
-      margin:16,
+      margin:16, 
     },
     cost:{
+      color:"#fff",
+      fontWeight:400,
+      fontSize:16,
+    },
+    amount:{
+      backgroundColor:"#555555",
+      justifyContent:'center',
+      alignItems:"center",
+      borderRadius:10,
+      borderWidth:2,
+      borderColor:"#ff7a00",
+      width:38,
+      height:40,
+      marginLeft:167,
+      marginTop:-56,
+      marginEnd:16
+    },
+    amountText:{
+      fontWeight:600,
+      fontSize:16,
       color:"#fff"
     }
   }
@@ -187,7 +234,8 @@ const Salads = ({navigation}) => {
       marginLeft: 10,
       borderRadius:10,
       borderWidth:2,
-      borderColor:"#bbb"
+      borderColor:"#bbb",
+      height:118
     },
     title:{
       width:336,
@@ -249,9 +297,10 @@ const Salads = ({navigation}) => {
     },
     button:{
       borderRadius:10,
+      height:40,
+      width:114,
       color:"#1c1c1c", 
-      backgroundColor: "#d9d9d9",
-      width:111,
+      backgroundColor:"#eee",
       display:"flex", 
       alignItems:"center",
       flexDirection:"row",
@@ -261,7 +310,26 @@ const Salads = ({navigation}) => {
     cost:{
       color:"#1c1c1c",
       fontWeight:400,
-      fontSize:16
+      fontSize:16,
+      marginLeft:16,
+    },
+    amount:{
+      backgroundColor:"#fff",
+      justifyContent:'center',
+      alignItems:"center",
+      borderRadius:10,
+      borderWidth:2,
+      borderColor:"#ff7a00",
+      width:38,
+      height:40,
+      marginLeft:167,
+      marginTop:-56,
+      marginEnd:16
+    },
+    amountText:{
+      fontWeight:600,
+      fontSize:16,
+      color:"#1c1c1c"
     }
   }
 
@@ -271,7 +339,15 @@ const Salads = ({navigation}) => {
         const price = useSelector((state) => state.price)
         const basket = useSelector((state) => state.favorites)
 
+        const handleMinOnPress = (type, data, x) => {
+          minOnPress(x);
+          dispatch({type:type, payload:data})
+        }
 
+        const handleMaxOnPress = (type, data, x) =>{
+          maxOnPress();
+          dispatch({type:type, payload:data})
+        }
 
   return (
     <View>
@@ -290,22 +366,34 @@ const Salads = ({navigation}) => {
           <SearchIcon style={styles.icon} />
         }
         <Text style={styles.tab}>Салаты</Text>
-        {salads.map((el, index) => 
+        {salads.map((elem, index) => 
         <View key={index} style={styles.card}>
-            <Text style={styles.title}>{el.title}</Text>
-            <View style={styles.button}>
-        <Pressable style={{height:"100%",width:55.5, alignItems:'center',}} onPress={() => dispatch({type:'DEL_FOOD', payload:el})} >
+            <Text style={styles.title}>{elem.title}</Text>
+            <Animated.View>
+            <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? [styles.button,  {width:w}] :styles.button}>
+              { basket.filter((el) => el.title === elem.title).length > 0 ?
+                <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => basket.filter((el) => el.title === elem.title).length === 1 ? handleMinOnPress("DEL_FOOD", elem, basket.filter((el) => el.title === elem.title).length)  : dispatch({type:"DEL_FOOD", payload:elem}) } >
         <Text style={styles.minus}>
           -
         </Text>
       </Pressable>
-      <Text style={styles.cost}>{el.price} руб</Text>
-      <Pressable style={{height:"100%",width:55.5, alignItems:'center'}} >
-        <Text style={styles.plus} onPress={() => dispatch({type:"ADD_FOOD", payload:el})}>
+      : ''
+    }
+      <Text style={basket.filter((el) => el.title === elem.title).length >= 1 ? styles.cost : [styles.cost, {marginLeft:16}]}>{elem.price} руб</Text>
+      <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => basket.filter((el) => el.title === elem.title).length === 0 ? handleMaxOnPress("ADD_FOOD", elem) : dispatch({type:"ADD_FOOD", payload:elem})} >
+        <Text style={styles.plus}>
           +
         </Text>
       </Pressable>
     </View>
+    </Animated.View>
+    {
+    basket.filter((el) => el.title === elem.title).length > 0 ?      
+      <View style={styles.amount}>
+        <Text style={styles.amountText}>{basket.filter((el) => el.title === elem.title).length}</Text>
+      </View>
+      : ""
+      }
         </View>
         )}
 
