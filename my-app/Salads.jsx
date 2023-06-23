@@ -311,7 +311,6 @@ const minOnPress = (x) => {
       color:"#1c1c1c",
       fontWeight:400,
       fontSize:16,
-      marginLeft:16,
     },
     amount:{
       backgroundColor:"#fff",
