@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, TextInput, View, ScrollView, Pressable, Animated } from 'react-native'
+import { StyleSheet, Text, TextInput, View, ScrollView, Pressable, Animated, Image } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import Name from './Components/Name'
 import NameWhite from './Components/NameWhite'
@@ -190,6 +190,15 @@ const Basket = ({navigation}) => {
               fontWeight:600,
               fontSize:14,
               color:"#fff"
+          },
+          image:{
+            position:"absolute",
+            width:140,
+            height:140,
+            marginLeft:224,
+      
+            borderBottomRightRadius:10,
+            borderTopRightRadius:10,
           }
     }
 
@@ -253,7 +262,7 @@ const Basket = ({navigation}) => {
             marginEnd:12,
             alignItems:"center",
             borderWidth:2,
-            borderColor:"#bbb"
+            borderColor:"##FF7A00"
           },
           price:{
             color:"#1c1c1c",
@@ -359,6 +368,15 @@ const Basket = ({navigation}) => {
             fontWeight:800,
             fontSize:14,
             color:"#1c1c1c"
+          },
+          image:{
+            position:"absolute",
+            width:140,
+            height:140,
+            marginLeft:224,
+      
+            borderBottomRightRadius:10,
+            borderTopRightRadius:10,
           }
     }
 
@@ -394,8 +412,8 @@ const Basket = ({navigation}) => {
             <Text style={styles.sum}>{price ? `Итого на ${price} руб` : "Корзина пуста"}</Text>
             {unique.map((elem, index) =>     
             basket.filter((el) => el.title === elem.title).length > 0 ?
-              <View style={styles.card} key={index}>
-                <Text style={styles.title}>{elem.title}</Text>
+              <Pressable style={elem.img ? [styles.card, {height:144}] : styles.card} key={index}>
+                <Text style={elem.img ? [styles.title, {width:192}] : styles.title}>{elem.title}</Text>
                 <Animated.View>
             <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? [styles.button,  {width:143}] :styles.button}>
               { basket.filter((el) => el.title === elem.title).length > 0 ?
@@ -421,7 +439,12 @@ const Basket = ({navigation}) => {
       </View>
       : ""
       }
-            </View>
+      {
+        elem.img ? 
+        <Image source={elem.img} style={styles.image} />
+        : ''
+      }
+            </Pressable>
             : ''
             )}
         

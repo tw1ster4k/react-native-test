@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text, StyleSheet, TextInput, Pressable, Animated, LayoutAnimation, NativeModules } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, TextInput, Pressable, Animated, LayoutAnimation, NativeModules, Image } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 import Name from './Components/Name'
 import SearchIcon from './Components/SearchIcon'
@@ -18,7 +18,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Salads = ({navigation}) => {
-  const [w, setW] = useState(117)
+  const [w, setW] = useState(143)
   const dispatch = useDispatch()
   const subject = useSelector((state) => state.subject)
 
@@ -31,6 +31,7 @@ const maxOnPress = () => {
     }
 }
 
+
 const minOnPress = (x) => {
   LayoutAnimation.spring();
   if(w === 143 && x === 0) {  
@@ -42,7 +43,7 @@ const minOnPress = (x) => {
 
   const stylesBlack ={
     container: {
-      width:393,
+      width:"100%",
       height:"100%",
       backgroundColor: '#151515',
       overflow:'scroll'
@@ -93,8 +94,7 @@ const minOnPress = (x) => {
       height:118
     },
     title:{
-      width:336,
-      fontWeight:400,
+      fontWeight:600,
       fontSize:14,
       color:"#fff",
       marginTop:16,
@@ -184,12 +184,28 @@ const minOnPress = (x) => {
       fontWeight:600,
       fontSize:16,
       color:"#fff"
-    }
+    }, 
+    image:{
+      position:'absolute',
+        width:140,
+        height:140,
+        marginLeft:224,
+        borderBottomRightRadius:10,
+        borderTopRightRadius:10,
+    },
+  
+  description:{
+    color:"#fff",
+    fontWeight:400,
+    fontSize:14,
+    marginLeft:16,
+    marginTop:16,
+  }
   }
 
   const stylesWhite = {
     container: {
-      width:393,
+      width:"100%",
       height:"100%",
       backgroundColor:"#fff",
       overflow:'scroll'
@@ -238,8 +254,7 @@ const minOnPress = (x) => {
       height:118
     },
     title:{
-      width:336,
-      fontWeight:400,
+      fontWeight:600,
       fontSize:14,
       color:"#1c1c1c",
       marginTop:16,
@@ -272,7 +287,7 @@ const minOnPress = (x) => {
     subject:{
       marginLeft:8,
       marginEnd:12
-    },
+    }, 
     favorites:{
       height:48,
       width:112,
@@ -283,7 +298,7 @@ const minOnPress = (x) => {
       marginEnd:12,
       alignItems:"center",
       borderWidth:2,
-      borderColor:"#bbb"
+      borderColor:"##FF7A00"
     },
     price:{
       color:"#1c1c1c",
@@ -297,7 +312,7 @@ const minOnPress = (x) => {
     },
     button:{
       borderRadius:10,
-      height:40,
+      height:40, 
       width:114,
       color:"#1c1c1c", 
       backgroundColor:"#eee",
@@ -328,11 +343,28 @@ const minOnPress = (x) => {
     amountText:{
       fontWeight:600,
       fontSize:16,
-      color:"#1c1c1c"
+      color:"#1c1c1c",
+    },
+    image:{
+      position:"absolute",
+      width:140,
+      height:140,
+      marginLeft:224,
+      borderBottomRightRadius:10,
+      borderTopRightRadius:10,
+    },
+    description:{
+      color:"#1c1c1c",
+      fontWeight:400,
+      fontSize:14,
+      marginLeft:16,
+      marginTop:16,
     }
   }
 
-    const styles = StyleSheet.create(subject ? stylesWhite : stylesBlack)
+    const styles = StyleSheet.create(subject ? stylesWhite: stylesBlack)
+
+
 
         const salads = useSelector((state) => state.salads)
         const price = useSelector((state) => state.price)
@@ -346,6 +378,25 @@ const minOnPress = (x) => {
         const handleMaxOnPress = (type, data, x) =>{
           maxOnPress();
           dispatch({type:type, payload:data})
+        }
+
+        const [more, setMore] = useState(null)
+        const [bigImg, setBigImg] = useState(null)
+
+        const moreFunction = (index) => {
+          if(more === index){
+              setMore(null)
+          } else {
+            setMore(index)
+          }
+        }
+        
+        const bigImgFunction = (index) => {
+          if(bigImg === index) {
+            setBigImg(null)
+          }else{
+            setBigImg(index)
+          }
         }
 
   return (
@@ -366,10 +417,17 @@ const minOnPress = (x) => {
         }
         <Text style={styles.tab}>Салаты</Text>
         {salads.map((elem, index) => 
-        <View key={index} style={styles.card}>
-            <Text style={styles.title}>{elem.title}</Text>
-            <Animated.View>
-            <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? [styles.button,  {width:w}] :styles.button}>
+        <Pressable key={index} style={elem.img ?  more  === index ? bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:335}] : bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:144}]  : more === index ? [styles.card, {height:260}] : styles.card} onPress={() => moreFunction(index)}>
+            <Text style={elem.img ? more === index ? [styles.title, {width:192}]  : [styles.title, {width:192}] : more === index ?  [styles.title, { fontWeight:600,fontSize:14,lineHeight:17.15}] : styles.title}>{elem.title}</Text>
+            {more === index ?
+            <View>
+              <Text style={elem.img ? [styles.description, {width:192}] : styles.description}>{elem.description}</Text>
+              <Text style={styles.description}>{elem.compound}</Text>
+            </View>
+              : ''
+            }
+            <Animated.View style={bigImg === index ? {position:'absolute', zIndex:3, marginTop:294} : ''}>
+            <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? bigImg === index ? [styles.button,  {width:w, position:'absolute', zIndex:3}]  : [styles.button,  {width:w}] :  bigImg === index ? [styles.button, {position:"absolute", zIndex:3}] : styles.button}>
               { basket.filter((el) => el.title === elem.title).length > 0 ?
                 <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => basket.filter((el) => el.title === elem.title).length === 1 ? handleMinOnPress("DEL_FOOD", elem, basket.filter((el) => el.title === elem.title).length)  : dispatch({type:"DEL_FOOD", payload:elem}) } >
         <Text style={styles.minus}>
@@ -388,12 +446,18 @@ const minOnPress = (x) => {
     </Animated.View>
     {
     basket.filter((el) => el.title === elem.title).length > 0 ?      
-      <View style={styles.amount}>
+      <View style={ bigImg === index ? [styles.amount, {position:"absolute", zIndex:3,marginTop:310 ,marginLeft:167,}] : styles.amount}>
         <Text style={styles.amountText}>{basket.filter((el) => el.title === elem.title).length}</Text>
       </View>
       : ""
       }
-        </View>
+      {elem.img ?
+        <Pressable onPress={() => bigImgFunction(index)} style={{position:'absolute'}}>
+        <Image source={elem.img} style={bigImg === index ?  {height:364, width:364, borderRadius:10, zIndex:1}  : styles.image} />
+        </Pressable>
+        : ""
+      }
+        </Pressable>
         )}
 
 

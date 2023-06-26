@@ -237,7 +237,7 @@ const Menu2 = ({navigation}) => {
     marginEnd:12,
     alignItems:"center",
     borderWidth:2,
-    borderColor:"#bbb"
+    borderColor:"##FF7A00"
   },
   price:{
     color:"#1c1c1c",
@@ -302,7 +302,7 @@ const Menu2 = ({navigation}) => {
                   <Text style={styles.quantity}>{basket.length ?  `${basket.length} товаров` : 'пусто'}</Text>
               </Pressable>
         </View>
-          <StatusBar style="auto" />   
+          <StatusBar  style="auto" />   
           </View>
   )
 }
