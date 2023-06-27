@@ -26,7 +26,7 @@ export const stylesBasketBlack = {
         marginLeft:10,
         marginTop:24,
         color:"#fff",
-        borderWidth:1,
+        borderWidth:2,
         borderColor:"#000000"
       },
       icon:{
@@ -197,11 +197,9 @@ export const stylesBasketBlack = {
         marginTop:16,
         marginLeft:10,
         display:"flex",
-        flexDirection:"column",
         flexWrap:"wrap",
         alignContent:"space-around",
         justifyContent:"space-between",
-        alignItems:'center'
       },
       info:{
         width:176,

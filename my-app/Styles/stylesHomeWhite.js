@@ -20,7 +20,7 @@ export const stylesHomeWhite = {
         borderRadius:10,
         marginLeft:10,
         marginTop:24,
-        borderWidth:1,
+        borderWidth:2,
         borderColor:"#bbbbbb",
         color:"#1c1c1c"
       },

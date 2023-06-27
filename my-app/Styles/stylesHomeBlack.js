@@ -22,7 +22,7 @@ export const stylesHomeBlack = {
         marginLeft:10,
         marginTop:24,
         color:"#fff",
-        borderWidth:1,
+        borderWidth:2,
         borderColor:"#000000",
       },
       name:{

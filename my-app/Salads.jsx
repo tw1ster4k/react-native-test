@@ -149,10 +149,11 @@ const minOnPress = (x) => {
     <StatusBar style="auto" />   
     {
                 subject ?
-                <True style={{marginTop:100}} />
+                <True style={{marginTop:34}} />
                 :
-                <TrueWhite style={{marginTop:100}} />
+                <TrueWhite style={{marginTop:34}} />
               }
+        <View style={{marginTop:34}}></View>
     </ScrollView>
     <View style={styles.footer}>    
           <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>

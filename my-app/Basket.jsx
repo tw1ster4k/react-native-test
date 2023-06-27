@@ -22,7 +22,7 @@ import TrueWhite from './Components/TrueWhite'
 
 const Basket = ({navigation}) => {
 
-    const params = ["Имя","Телефон","Количество гостей", "Дата", "Время"]
+    const params = ["Имя","Количество гостей","Время", "Телефон", "Дата"]
 
 
     const dispatch = useDispatch()
@@ -139,7 +139,7 @@ const Basket = ({navigation}) => {
 
         <View style={styles.form}>
             {params.map((el, index) => 
-            <View key={index} style={styles.info}>
+            <View key={index} style={ el === "Дата" ? [styles.info, {marginTop:-19}] : styles.info}>
                   <Text style={styles.infoText}>{el}</Text>
                   <TextInput style={styles.infoInput} />
             </View>
@@ -150,10 +150,11 @@ const Basket = ({navigation}) => {
         </View>
               {
                 subject ?
-                <True style={{marginTop:100}} />
+                <True style={{marginTop:34}} />
                 :
-                <TrueWhite style={{marginTop:100}} />
+                <TrueWhite style={{marginTop:34}} />
               }
+              <View style={{marginTop:34}}></View>
         </ScrollView>
         <View style={styles.footer}>
             <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
