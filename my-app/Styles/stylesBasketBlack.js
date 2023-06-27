@@ -198,8 +198,11 @@ export const stylesBasketBlack = {
         marginLeft:10,
         display:"flex",
         flexWrap:"wrap",
+        flexDirection:"column",
+        flexWrap:"wrap",
         alignContent:"space-around",
         justifyContent:"space-between",
+        alignItems:'center'
       },
       info:{
         width:176,
