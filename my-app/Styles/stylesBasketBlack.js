@@ -201,6 +201,7 @@ export const stylesBasketBlack = {
         flexWrap:"wrap",
         alignContent:"space-around",
         justifyContent:"space-between",
+        alignItems:'center'
       },
       info:{
         width:176,
@@ -219,6 +220,7 @@ export const stylesBasketBlack = {
         borderWidth:2,
         borderColor:"#bbb",
         backgroundColor:"#1c1c1c",
+        color:"#fff"
       },
       submit:{
         height:48,

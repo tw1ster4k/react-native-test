@@ -200,6 +200,7 @@ export const stylesBasketWhite = {
         flexWrap:"wrap",
         alignContent:"space-around",
         justifyContent:"space-between",
+        alignItems:'center'
       },
       info:{
         width:176,
