@@ -10,6 +10,9 @@ import Home from './Components/Home'
 import HomeWhite from './Components/HomeWhite'
 import Subject from './Components/Subject'
 import SubjectWhite from './Components/SubjectWhite'
+import { stylesBasketBlack } from './Styles/stylesBasketBlack'
+import { stylesBasketWhite } from './Styles/stylesBasketWhite'
+import { useState } from 'react'
 
 
 
@@ -22,362 +25,23 @@ const Basket = ({navigation}) => {
     const price = useSelector((state) => state.price)
     const basket = useSelector((state) => state.favorites)
 
+    const [more, setMore] = useState(null)
+    const [bigImg, setBigImg] = useState(null)
 
-    const blackStyles = {
-        container:{
-            width:393,
-            height:"100%",
-            backgroundColor:"#151515",
-            overflow:"scroll"
-        },
-        name:{
-            marginTop:64,
-            marginLeft:"22.5%",
-          },
-          text:{
-            textAlign:"center",
-            width:380,
-            marginTop:24,
-            marginLeft:10,
-            color:"#ffffff",
-            fontSize:14,
-            fontWeight:400,
-          },
-          input:{
-            width:368,
-            height:40,
-            backgroundColor: "#555555",
-            borderRadius:10,
-            marginLeft:10,
-            marginTop:24,
-            color:"#fff",
-            borderWidth:1,
-            borderColor:"#000000"
-          },
-          icon:{
-            marginTop:-31.75,
-            marginLeft:347.75,
-          },
-          footer:{
-            position:'absolute',
-            left:0,
-            right:0,
-            bottom:10,
-            width:"100%",
-            flexDirection:'row'
-          },
-          homeButton:{
-            marginEnd:12,
-            marginLeft:10
-          },
-          subject:{
-            marginLeft:8,
-            marginEnd:12
-          },
-          favorites:{
-            height:48,
-            width:112,
-            backgroundColor:'#555555',
-            borderRadius:10,
-            justifyContent:'center',
-            borderWidth:2,
-            borderColor:"#FF7A00",
-            marginLeft:125,
-            marginEnd:12,
-            alignItems:"center"
-          },
-          price:{
-            color:"#fff",
-            fontWeight:600,
-            fontSize:14
-          },
-          quantity:{
-            color:'#fff',
-            fontWeight:400,
-            fontSize:10
-          },
-          tab:{
-            color:"#fff",
-            width:600,
-            fontSize:24,
-            marginTop:34,
-            marginLeft:10
-          },
-          sum:{
-            color:"#fff",
-            fontWeight:400,
-            fontSize:16,
-            marginLeft:10
-          },
-          card:{
-            width:368,
-            height:118,
-            backgroundColor:"#222222",
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#555555",
-            marginTop:12,
-            marginLeft:10
-          },
-          title:{
-            width:336,
-            fontWeight:400,
-            fontSize:14,
-            color:"#fff",
-            marginTop:16,
-            marginLeft:16,
-          },
-          button:{
-            height:40,
-            width:114,
-            borderRadius:10,
-            color:"#fff", 
-            backgroundColor: "#555555",
-            display:"flex", 
-            alignItems:"center",
-            flexDirection:"row",
-            justifyContent:"space-around", 
-            margin:16, 
-          },
-          minus:{
-            fontWeight:400,
-            fontSize:20,
-            color:"#fff",
-            marginRight:10
-          },
-          plus:{
-            fontWeight:400,
-            fontSize:20,
-            color:"#fff",
-            marginLeft: 10
-          },
-          cost:{
-            color:"#fff",
-            fontWeight:400,
-            fontSize:16,
-          },
-          amount:{
-            backgroundColor:"#555555",
-            justifyContent:'center',
-            alignItems:"center",
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#ff7a00",
-            width:38,
-            height:40,
-            marginLeft:167,
-            marginTop:-56,
-            marginEnd:16
-          },
-          amountText:{
-            fontWeight:600,
-            fontSize:16,
-            color:"#fff"
-          },
-          call:{
-            width:210,
-            height:48,
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#ff7a00",
-            marginTop:24,
-            marginLeft:10,
-            justifyContent:'center',
-            alignItems:"center",
-            backgroundColor:"#1c1c1c",
-          },
-          callText:{
-              fontWeight:600,
-              fontSize:14,
-              color:"#fff"
-          },
-          image:{
-            position:"absolute",
-            width:140,
-            height:140,
-            marginLeft:224,
-      
-            borderBottomRightRadius:10,
-            borderTopRightRadius:10,
-          }
+    const moreFunction = (index) => {
+      if(more === index){
+          setMore(null)
+      } else {
+        setMore(index)
+      }
     }
-
-    const whiteStyles = {
-        container:{
-            width:393,
-            height:'100%',
-            backgroundColor:'#fff',
-            overflow:'scroll'
-        },
-        name:{
-            marginTop:64,
-            marginLeft:"22.5%",
-          },
-          text:{
-            textAlign:"center",
-            width:380,
-            marginTop:24,
-            marginLeft:10,
-            color:"#1c1c1c",
-            fontSize:14,
-            fontWeight:400,
-          },
-          input:{
-            width:368,
-            height:40,
-            borderRadius:10,
-            marginLeft:10,
-            marginTop:24,
-            borderWidth:1,
-            borderColor:"#bbbbbb",
-            color:"#1c1c1c"
-          },
-          icon:{
-            marginTop:-31.75,
-            marginLeft:347.75,
-          },
-          footer:{
-            position:'absolute',
-            left:0,
-            right:0,
-            bottom:10,
-            width:"100%",
-            flexDirection:'row'
-          },
-          homeButton:{
-            marginEnd:12,
-            marginLeft:10
-          },
-          subject:{
-            marginLeft:8,
-            marginEnd:12
-          },
-          favorites:{
-            height:48,
-            width:112,
-            borderRadius:10,
-            justifyContent:'center',
-            backgroundColor:"#fff",
-            marginLeft:125,
-            marginEnd:12,
-            alignItems:"center",
-            borderWidth:2,
-            borderColor:"##FF7A00"
-          },
-          price:{
-            color:"#1c1c1c",
-            fontWeight:600,
-            fontSize:14
-          },
-          quantity:{
-            color:'#1c1c1c',
-            fontWeight:400,
-            fontSize:10
-          },
-          tab:{
-            color:"#1c1c1c",
-            width:600,
-            fontSize:24,
-            marginTop:34,
-            marginLeft:10
-          },
-          sum:{
-            color:"#1c1c1c",
-            fontWeight:400,
-            fontSize:16,
-            marginLeft:10
-          },
-          card:{
-            width:368,
-            height:118,
-            backgroundColor:"#fff",
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#bbb",
-            marginTop:12,
-            marginLeft:10
-          },
-          title:{
-            width:336,
-            fontWeight:400,
-            fontSize:14,
-            color:"#1c1c1c",
-            marginTop:16,
-            marginLeft:16,
-          },
-          button:{
-            borderRadius:10,
-            height:40,
-            width:114,
-            color:"#1c1c1c", 
-            backgroundColor:"#eee",
-            display:"flex", 
-            alignItems:"center",
-            flexDirection:"row",
-            justifyContent:"space-around", 
-            margin:16
-          },
-          minus:{
-            fontWeight:400,
-            fontSize:20,
-            color:"#1c1c1c",
-            marginRight:10
-          },
-          plus:{
-            fontWeight:400,
-            fontSize:20,
-            color:"#1c1c1c",
-            marginLeft: 10
-          },
-          cost:{
-            color:"#1c1c1c",
-            fontWeight:400,
-            fontSize:16,
-          },
-          amount:{
-            backgroundColor:"#fff",
-            justifyContent:'center',
-            alignItems:"center",
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#ff7a00",
-            width:38,
-            height:40,
-            marginLeft:167,
-            marginTop:-56,
-            marginEnd:16
-          },
-          amountText:{
-            fontWeight:600,
-            fontSize:16,
-            color:"#1c1c1c"
-          },
-          call:{
-            width:210,
-            height:48,
-            borderRadius:10,
-            borderWidth:2,
-            borderColor:"#ff7a00",
-            marginTop:24,
-            marginLeft:10,
-            justifyContent:'center',
-            alignItems:"center",
-            backgroundColor:"#fff",
-          },
-          callText:{
-            fontWeight:800,
-            fontSize:14,
-            color:"#1c1c1c"
-          },
-          image:{
-            position:"absolute",
-            width:140,
-            height:140,
-            marginLeft:224,
-      
-            borderBottomRightRadius:10,
-            borderTopRightRadius:10,
-          }
+    
+    const bigImgFunction = (index) => {
+      if(bigImg === index) {
+        setBigImg(null)
+      }else{
+        setBigImg(index)
+      }
     }
 
    
@@ -392,7 +56,7 @@ const Basket = ({navigation}) => {
       }
     });
 
-    const styles = StyleSheet.create(subject ? whiteStyles : blackStyles)
+    const styles = StyleSheet.create(subject ? stylesBasketWhite : stylesBasketBlack)
   return (
     <View>
         <ScrollView style={styles.container}>
@@ -412,10 +76,17 @@ const Basket = ({navigation}) => {
             <Text style={styles.sum}>{price ? `Итого на ${price} руб` : "Корзина пуста"}</Text>
             {unique.map((elem, index) =>     
             basket.filter((el) => el.title === elem.title).length > 0 ?
-              <Pressable style={elem.img ? [styles.card, {height:144}] : styles.card} key={index}>
-                <Text style={elem.img ? [styles.title, {width:192}] : styles.title}>{elem.title}</Text>
-                <Animated.View>
-            <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? [styles.button,  {width:143}] :styles.button}>
+            <Pressable key={index} style={elem.img ?  more  === index ? bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:335}] : bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:144}]  : more === index ? [styles.card, {height:260}] : styles.card} onPress={() => moreFunction(index)}>
+                 <Text style={elem.img ? more === index ? [styles.title, {width:192}]  : [styles.title, {width:192}] : more === index ?  [styles.title, { fontWeight:600,fontSize:14,lineHeight:17.15}] : styles.title}>{elem.title}</Text>
+            {more === index ?
+            <View>
+              <Text style={elem.img ? [styles.description, {width:192}] : styles.description}>{elem.description}</Text>
+              <Text style={styles.description}>{elem.compound}</Text>
+            </View>
+              : ''
+            }
+                <Animated.View style={bigImg === index ? {position:'absolute', zIndex:3, marginTop:294} : ''}>
+                <View style={ basket.filter((el) => el.title === elem.title).length >= 1 ? bigImg === index ? [styles.button,  {width:143, position:'absolute', zIndex:3}]  : [styles.button,  {width:143}] :  bigImg === index ? [styles.button, {position:"absolute", zIndex:3}] : styles.button}>
               { basket.filter((el) => el.title === elem.title).length > 0 ?
                 <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => dispatch({type:"DEL_FOOD", payload:elem}) } >
         <Text style={styles.minus}>
@@ -434,15 +105,16 @@ const Basket = ({navigation}) => {
     </Animated.View>
     {
     basket.filter((el) => el.title === elem.title).length > 0 ?      
-      <View style={styles.amount}>
+    <View style={ bigImg === index ? [styles.amount, {position:"absolute", zIndex:3,marginTop:310 ,marginLeft:167,}] : styles.amount}>
         <Text style={styles.amountText}>{basket.filter((el) => el.title === elem.title).length}</Text>
       </View>
       : ""
       }
-      {
-        elem.img ? 
-        <Image source={elem.img} style={styles.image} />
-        : ''
+      {elem.img ?
+        <Pressable onPress={() => bigImgFunction(index)} style={{position:'absolute'}}>
+        <Image source={elem.img} style={bigImg === index ?  {height:364, width:364, borderRadius:10, zIndex:1}  : styles.image} />
+        </Pressable>
+        : ""
       }
             </Pressable>
             : ''
