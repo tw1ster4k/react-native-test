@@ -13,6 +13,8 @@ import SubjectWhite from './Components/SubjectWhite'
 import { useState } from 'react'
 import { stylesSaladsBlack } from './Styles/stylesSaladsBlack'
 import { stylesSaladsWhite } from './Styles/stylesSaladsWhite'
+import TrueWhite from './Components/TrueWhite'
+import True from './Components/True'
 
 const {UIManager} = NativeModules
 
@@ -145,6 +147,12 @@ const minOnPress = (x) => {
 
 
     <StatusBar style="auto" />   
+    {
+                subject ?
+                <True style={{marginTop:100}} />
+                :
+                <TrueWhite style={{marginTop:100}} />
+              }
     </ScrollView>
     <View style={styles.footer}>    
           <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>

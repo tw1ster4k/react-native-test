@@ -13,11 +13,16 @@ import SubjectWhite from './Components/SubjectWhite'
 import { stylesBasketBlack } from './Styles/stylesBasketBlack'
 import { stylesBasketWhite } from './Styles/stylesBasketWhite'
 import { useState } from 'react'
+import LineSvg from './Components/LineSvg'
+import True from './Components/True'
+import TrueWhite from './Components/TrueWhite'
 
 
 
 
 const Basket = ({navigation}) => {
+
+    const params = ["Имя","Телефон","Количество гостей", "Дата", "Время"]
 
 
     const dispatch = useDispatch()
@@ -123,6 +128,32 @@ const Basket = ({navigation}) => {
         <Pressable style={styles.call} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
                 <Text style={styles.callText}>Вызвать официанта</Text>
         </Pressable>
+
+
+
+        <LineSvg style={styles.line} />
+
+
+        <Text style={styles.tab}>Разместить предзаказ</Text>
+        <Text style={styles.preOrderText}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+
+        <View style={styles.form}>
+            {params.map((el, index) => 
+            <View key={index} style={styles.info}>
+                  <Text style={styles.infoText}>{el}</Text>
+                  <TextInput style={styles.infoInput} />
+            </View>
+            )}
+            <Pressable style={styles.submit}>
+                <Text style={styles.submitText}>Разместить</Text>
+            </Pressable>
+        </View>
+              {
+                subject ?
+                <True style={{marginTop:100}} />
+                :
+                <TrueWhite style={{marginTop:100}} />
+              }
         </ScrollView>
         <View style={styles.footer}>
             <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>

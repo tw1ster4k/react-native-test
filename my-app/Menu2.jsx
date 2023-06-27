@@ -13,6 +13,8 @@ import Subject from './Components/Subject'
 import { useSelector, useDispatch } from 'react-redux'
 import { stylesHomeBlack }  from './Styles/stylesHomeBlack'
 import { stylesHomeWhite } from './Styles/stylesHomeWhite'
+import TrueWhite from './Components/TrueWhite'
+import True from './Components/True'
 
 
 const Menu2 = ({navigation}) => {
@@ -55,6 +57,12 @@ const Menu2 = ({navigation}) => {
             )}
         </View>
         <Text style={styles.warning}t>Уважаемые гости, если у Вас есть аллергия на какой-либо продукт, пожалуйста, предупредите об этом Вашего официанта. Меню является рекламной продукцией нашего ресторана. Утвержденное контрольное меню с выходами блюд и сведениями о пищевой ценности готовой продукции: калорийности, содержании белков, жиров, углеводов находится в уголке потребителя и предоставляется по первому Вашему требованию.</Text>
+        {
+                subject ?
+                <True style={{marginTop:100}} />
+                :
+                <TrueWhite style={{marginTop:100}} />
+              }
     </ScrollView>
         <View style={styles.footer}>
               <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>

@@ -180,5 +180,59 @@ export const stylesBasketWhite = {
         fontSize:14,
         marginLeft:16,
         marginTop:16,
+      },
+      line:{
+        marginTop:32
+      },
+      preOrderText:{
+        width:368,
+        marginTop:8,
+        marginLeft:10,
+        color:'#1c1c1c'
+      },
+      form:{
+        width:368,
+        height:218,
+        marginTop:16,
+        marginLeft:10,
+        display:"flex",
+        flexDirection:"column",
+        flexWrap:"wrap",
+        alignContent:"space-around",
+        justifyContent:"space-between",
+      },
+      info:{
+        width:176,
+        height:67
+      },
+      infoText:{
+        fontWeight:400,
+        fontSize:14,
+        color:"#1c1c1c"
+      },
+      infoInput:{
+        width:176,
+        marginTop:2,
+        height:48,
+        borderRadius:10,
+        borderWidth:2,
+        borderColor:"#bbb",
+        backgroundColor:"#fff",
+      },
+      submit:{
+        height:48,
+        width:176,
+        backgroundColor:"#fff",
+        borderRadius:10,
+        borderWidth:2,
+        borderColor:"#ff7a00",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center"
+      },
+      submitText:{
+        color:"#1c1c1c",
+        fontWeight:600,
+        fontSize:14,
       }
 }
