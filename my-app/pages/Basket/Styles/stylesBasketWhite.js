@@ -58,7 +58,7 @@ export const stylesBasketWhite = {
         marginEnd:12,
         alignItems:"center",
         borderWidth:2,
-        borderColor:"##FF7A00"
+        borderColor:"#FF7A00"
       },
       price:{
         color:"#1c1c1c",
@@ -141,7 +141,7 @@ export const stylesBasketWhite = {
         height:40,
         marginLeft:167,
         marginTop:-56,
-        marginEnd:16
+        marginBottom:16
       },
       amountText:{
         fontWeight:600,

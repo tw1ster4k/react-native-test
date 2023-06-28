@@ -42,7 +42,7 @@ export const stylesHomeBlack = {
       },
       categories:{
         width:393,
-        height:250,
+        height:350,
         display:"flex",
         flexDirection:"column",
         flexWrap:"wrap",
@@ -64,6 +64,7 @@ export const stylesHomeBlack = {
             borderRadius:10,
             borderWidth:2,
             borderColor:"#555555",
+            marginTop:16
       },
       warning:{
         width:368,

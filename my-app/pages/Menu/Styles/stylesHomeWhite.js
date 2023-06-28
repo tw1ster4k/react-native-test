@@ -42,7 +42,7 @@ export const stylesHomeWhite = {
       },
       categories:{
         width:393,
-        height:250,
+        height:350,
         display:"flex",
         flexDirection:"column",
         flexWrap:"wrap",
@@ -63,6 +63,7 @@ export const stylesHomeWhite = {
             borderRadius:10,
             borderWidth:2,
             borderColor:"#bbbbbb",
+            marginTop:16
       },
       warning:{
         width:368,
@@ -99,7 +100,7 @@ export const stylesHomeWhite = {
         marginEnd:12,
         alignItems:"center",
         borderWidth:2,
-        borderColor:"##FF7A00"
+        borderColor:"#FF7A00"
       },
       price:{
         color:"#1c1c1c",

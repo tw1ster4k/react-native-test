@@ -63,7 +63,7 @@ const Menu2 = ({navigation}) => {
                 :
                 <TrueWhite style={{marginTop:34}} />
               }
-              <View style={{marginTop:34}}></View>
+              <View style={{marginTop:120}}></View>
     </ScrollView>
         <View style={styles.footer}>
               <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
@@ -80,7 +80,7 @@ const Menu2 = ({navigation}) => {
                   <Subject />
                 }
               </Pressable>
-              <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное")}>
+              <Pressable style={basket.length < 1 ? subject ? [styles.favorites, {borderColor:'#bbb'}] : [styles.favorites, {borderColor:'#1c1c1c'}] : styles.favorites} onPress={() => navigation.navigate("Избранное")}>
                   <Text style={styles.price}>{price ? `${price} руб` : 'Корзина'}</Text>
                   <Text style={styles.quantity}>{basket.length ?  `${basket.length} товаров` : 'пусто'}</Text>
               </Pressable>

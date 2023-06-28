@@ -77,6 +77,7 @@ const minOnPress = (x) => {
         }
         
         const bigImgFunction = (index) => {
+          LayoutAnimation.spring();
           if(bigImg === index) {
             setBigImg(null)
           }else{
@@ -102,7 +103,7 @@ const minOnPress = (x) => {
         }
         <Text style={styles.tab}>Салаты</Text>
         {salads.map((elem, index) => 
-        <Pressable key={index} style={elem.img ?  more  === index ? bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:335}] : bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:144}]  : more === index ? [styles.card, {height:260}] : styles.card} onPress={() => moreFunction(index)}>
+        <Pressable key={index} style={elem.img ?  more  === index ? bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:"auto"}] : bigImg === index ? [styles.card, {height:368}] : [styles.card, {height:144}]  : more === index ? [styles.card, {height:"auto"}] : styles.card} onPress={() => moreFunction(index)}>
             <Text style={elem.img ? more === index ? [styles.title, {width:192}]  : [styles.title, {width:192}] : more === index ?  [styles.title, { fontWeight:600,fontSize:14,lineHeight:17.15}] : styles.title}>{elem.title}</Text>
             {more === index ?
             <View>
@@ -153,7 +154,7 @@ const minOnPress = (x) => {
                 :
                 <TrueWhite style={{marginTop:34}} />
               }
-        <View style={{marginTop:34}}></View>
+        <View style={{marginTop:120}}></View>
     </ScrollView>
     <View style={styles.footer}>    
           <Pressable style={styles.homeButton} onPress={() => navigation.navigate("Меню")}>
@@ -170,7 +171,7 @@ const minOnPress = (x) => {
               <Subject />
             }
           </Pressable>
-          <Pressable style={styles.favorites} onPress={() => navigation.navigate("Избранное")}>
+          <Pressable style={basket.length < 1 ? subject ? [styles.favorites, {borderColor:'#bbb'}] : [styles.favorites, {borderColor:'#1c1c1c'}] : styles.favorites} onPress={() => navigation.navigate("Избранное")}>
             <Text style={styles.price}>{price ? `${price} руб` : 'Корзина'}</Text>
             <Text style={styles.quantity}>{basket.length ? `${basket.length} товаров` : "пусто"}</Text>
           </Pressable>

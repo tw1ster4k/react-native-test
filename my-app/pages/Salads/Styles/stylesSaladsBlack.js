@@ -135,7 +135,7 @@ export const stylesSaladsBlack = {
         height:40,
         marginLeft:167,
         marginTop:-56,
-        marginEnd:16
+        marginBottom:16
       },
       amountText:{
         fontWeight:600,
