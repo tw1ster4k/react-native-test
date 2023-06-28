@@ -1,6 +1,6 @@
 export const stylesBasketWhite = {
-    container:{
-        width:393,
+    container:{        
+        width:"100%",
         height:'100%',
         backgroundColor:'#fff',
         overflow:'scroll'

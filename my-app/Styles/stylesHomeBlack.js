@@ -1,6 +1,6 @@
 export const stylesHomeBlack = {
     container: {
-        width:393,
+        width:"100%",
         height:"100%",
         backgroundColor: '#151515',
         overflow:'scroll'
