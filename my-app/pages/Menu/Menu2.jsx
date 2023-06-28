@@ -1,20 +1,20 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { View, StyleSheet, ScrollView, Text, TextInput, Pressable  } from 'react-native'
-import Name from './Components/Name'
-import SearchIcon from './Components/SearchIcon'
-import NameWhite from './Components/NameWhite'
-import SearchIconWhite from './Components/SearchIconWhite'
-import HomeWhite from './Components/HomeWhite'
-import SubjectWhite from './Components/SubjectWhite'
+import Name from '../../Components/Name'
+import SearchIcon from '../../Components/SearchIcon'
+import NameWhite from '../../Components/NameWhite'
+import SearchIconWhite from '../../Components/SearchIconWhite'
+import HomeWhite from '../../Components/HomeWhite'
+import SubjectWhite from '../../Components/SubjectWhite'
 
-import Home from './Components/Home'
-import Subject from './Components/Subject'
+import Home from '../../Components/Home'
+import Subject from '../../Components/Subject'
 import { useSelector, useDispatch } from 'react-redux'
 import { stylesHomeBlack }  from './Styles/stylesHomeBlack'
-import { stylesHomeWhite } from './Styles/stylesHomeWhite'
-import TrueWhite from './Components/TrueWhite'
-import True from './Components/True'
+import { stylesHomeWhite } from "./Styles/stylesHomeWhite"
+import TrueWhite from '../../Components/TrueWhite'
+import True from '../../Components/True'
 
 
 const Menu2 = ({navigation}) => {

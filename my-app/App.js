@@ -4,9 +4,9 @@ import { Provider } from "react-redux"
 import {store} from "./store"
 import {NavigationContainer} from "@react-navigation/native"
 import {createStackNavigator} from "@react-navigation/stack"
-import Menu2 from "./Menu2"
-import Salads from "./Salads"
-import Basket from "./Basket"
+import Menu2 from "./pages/Menu/Menu2"
+import Salads from "./pages/Salads/Salads"
+import Basket from "./pages/Basket/Basket"
 
 
 const Stack = createStackNavigator();
