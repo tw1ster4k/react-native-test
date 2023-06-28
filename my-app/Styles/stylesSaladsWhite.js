@@ -22,7 +22,7 @@ export const stylesSaladsWhite = {
         marginTop:24,
         borderWidth:2,
         borderColor:"#bbb",
-        color:"#1c1c1c"
+        color:"#1c1c1c",
       },
       name:{
         marginTop:64,
@@ -115,7 +115,8 @@ export const stylesSaladsWhite = {
         alignItems:"center",
         flexDirection:"row",
         justifyContent:"space-around", 
-        margin:16
+        margin:16,
+        
       },
       cost:{
         color:"#1c1c1c",

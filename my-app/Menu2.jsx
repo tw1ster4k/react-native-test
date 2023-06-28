@@ -42,7 +42,7 @@ const Menu2 = ({navigation}) => {
       }
     
         <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={styles.input} placeholder='Поиск'   />
+        <TextInput style={[styles.input, {paddingLeft:24}]} placeholder='Поиск'   />
         { subject ?
           <SearchIconWhite style={styles.icon} /> 
           :

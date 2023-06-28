@@ -23,7 +23,7 @@ export const stylesSaladsBlack = {
         marginTop:24, 
         color:"#fff",
         borderWidth:2,
-        borderColor:"#000000"
+        borderColor:"#000000",
       },
       name:{
         marginTop:64,

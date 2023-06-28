@@ -27,7 +27,7 @@ export const stylesBasketBlack = {
         marginTop:24,
         color:"#fff",
         borderWidth:2,
-        borderColor:"#000000"
+        borderColor:"#000000",
       },
       icon:{
         marginTop:-31.75,
@@ -221,7 +221,7 @@ export const stylesBasketBlack = {
         borderWidth:2,
         borderColor:"#bbb",
         backgroundColor:"#1c1c1c",
-        color:"#fff"
+        color:"#fff",
       },
       submit:{
         height:48,

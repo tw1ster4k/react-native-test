@@ -71,7 +71,7 @@ const Basket = ({navigation}) => {
             <Name style={styles.name} />
             }
             <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-            <TextInput style={styles.input} placeholder='Поиск' />
+            <TextInput style={[styles.input, {paddingLeft:24}]} placeholder='Поиск' />
             {subject ?
             <SearchIconWhite style={styles.icon} />
                 :
@@ -141,7 +141,7 @@ const Basket = ({navigation}) => {
             {params.map((el, index) => 
             <View key={index} style={ el === "Дата" ? [styles.info, {marginTop:-19}] : styles.info}>
                   <Text style={styles.infoText}>{el}</Text>
-                  <TextInput style={styles.infoInput} />
+                  <TextInput style={[styles.infoInput, {paddingLeft:16}]} />
             </View>
             )}
             <Pressable style={styles.submit}>
