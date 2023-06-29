@@ -81,10 +81,10 @@ const minOnPress = (x) => {
         }
 
         const FilterSalads = (event) => {
-          if(event.target.value === "") {
+          if(event === "") {
             setSalads(salad)
           }else{
-            let arr = salad.filter((el) => el.title.toLowerCase().includes(event.target.value.toLowerCase()))
+            let arr = salad.filter((el) => el.title.toLowerCase().includes(event.toLowerCase()))
             setSalads(arr)
           }
         }
@@ -117,7 +117,7 @@ const minOnPress = (x) => {
         <Name stroke="currentColor" style={styles.name} />
       }
         <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={styles.input} placeholder='Поиск'  onChange={FilterSalads} />
+        <TextInput style={styles.input} placeholder='Поиск'  onChangeText={FilterSalads} />
         {subject ?
        <SearchIconWhite style={styles.icon} />  
        :
