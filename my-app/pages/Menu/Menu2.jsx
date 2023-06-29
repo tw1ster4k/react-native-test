@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { View, StyleSheet, ScrollView, Text, TextInput, Pressable  } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, TextInput, Pressable, LayoutAnimation, NativeModules  } from 'react-native'
 import Name from '../../Components/Name'
 import SearchIcon from '../../Components/SearchIcon'
 import NameWhite from '../../Components/NameWhite'
@@ -17,12 +17,15 @@ import TrueWhite from '../../Components/TrueWhite'
 import True from '../../Components/True'
 
 
+
+
 const Menu2 = ({navigation}) => {
   
   const dispatch = useDispatch();
   const subject = useSelector((state) => state.subject)
   const price = useSelector((state) => state.price)
   const basket = useSelector((state) => state.favorites) 
+
 
 
   
@@ -42,7 +45,7 @@ const Menu2 = ({navigation}) => {
       }
     
         <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={[styles.input, {paddingLeft:24}]} placeholder='Поиск'   />
+        <TextInput style={styles.input} placeholder='Поиск'   />
         { subject ?
           <SearchIconWhite style={styles.icon} /> 
           :

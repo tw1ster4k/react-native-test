@@ -24,20 +24,21 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 
+
 const Basket = ({navigation}) => {
-
-    const params = ["Имя","Количество гостей","Время", "Телефон", "Дата"]
-
-
-    const dispatch = useDispatch()
-    const subject = useSelector((state) => state.subject)
-    const price = useSelector((state) => state.price)
-    const basket = useSelector((state) => state.favorites)
-
-    const [more, setMore] = useState(null)
-    const [bigImg, setBigImg] = useState(null)
-
-    const moreFunction = (index) => {
+  
+  const params = ["Имя","Количество гостей","Время", "Телефон", "Дата"]
+  
+  
+  const dispatch = useDispatch()
+  const subject = useSelector((state) => state.subject)
+  const price = useSelector((state) => state.price)
+  const basket = useSelector((state) => state.favorites)
+  
+  const [more, setMore] = useState(null)
+  const [bigImg, setBigImg] = useState(null)
+  
+  const moreFunction = (index) => {
       if(more === index){
           setMore(null)
       } else {
@@ -46,7 +47,15 @@ const Basket = ({navigation}) => {
     }
     
     const bigImgFunction = (index) => {
-      LayoutAnimation.spring();
+      LayoutAnimation.easeInEaseOut();
+      LayoutAnimation.configureNext({
+        duration: 150,
+        update: {
+          type: LayoutAnimation.Types.easeInEaseOut,
+          property: LayoutAnimation.Properties.opacity,
+          opacity: 0,    
+        },
+      }); 
       if(bigImg === index) {
         setBigImg(null)
       }else{
@@ -76,7 +85,7 @@ const Basket = ({navigation}) => {
             <Name style={styles.name} />
             }
             <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-            <TextInput style={[styles.input, {paddingLeft:24}]} placeholder='Поиск' />
+            <TextInput style={styles.input} placeholder='Поиск' />
             {subject ?
             <SearchIconWhite style={styles.icon} />
                 :
@@ -146,7 +155,7 @@ const Basket = ({navigation}) => {
             {params.map((el, index) => 
             <View key={index} style={ el === "Дата" ? [styles.info, {marginTop:-19}] : styles.info}>
                   <Text style={styles.infoText}>{el}</Text>
-                  <TextInput style={[styles.infoInput, {paddingLeft:16}]} />
+                  <TextInput style={styles.infoInput} />
             </View>
             )}
             <Pressable style={styles.submit}>

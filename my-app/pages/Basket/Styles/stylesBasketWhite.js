@@ -27,6 +27,7 @@ export const stylesBasketWhite = {
         borderWidth:2,
         borderColor:"#bbbbbb",
         color:"#1c1c1c",
+        paddingLeft:24
       },
       icon:{
         marginTop:-31.75,
@@ -85,7 +86,7 @@ export const stylesBasketWhite = {
       },
       card:{
         width:368,
-        height:118,
+        height:"auto",
         backgroundColor:"#fff",
         borderRadius:10,
         borderWidth:2,
@@ -219,6 +220,7 @@ export const stylesBasketWhite = {
         borderWidth:2,
         borderColor:"#bbb",
         backgroundColor:"#fff",
+        paddingLeft:16
       },
       submit:{
         height:48,

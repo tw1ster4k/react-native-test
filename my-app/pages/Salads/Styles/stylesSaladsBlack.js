@@ -24,6 +24,7 @@ export const stylesSaladsBlack = {
         color:"#fff",
         borderWidth:2,
         borderColor:"#000000",
+        paddingLeft:24
       },
       name:{
         marginTop:64,
@@ -48,7 +49,7 @@ export const stylesSaladsBlack = {
         borderRadius:10,
         borderWidth:2,
         borderColor:"#555555",
-        height:118
+        height:"auto"
       },
       title:{
         fontWeight:600,

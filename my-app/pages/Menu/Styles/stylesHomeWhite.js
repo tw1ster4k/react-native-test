@@ -23,6 +23,7 @@ export const stylesHomeWhite = {
         borderWidth:2,
         borderColor:"#bbbbbb",
         color:"#1c1c1c",
+        paddingLeft:24
       },
       name:{
         marginTop:64,

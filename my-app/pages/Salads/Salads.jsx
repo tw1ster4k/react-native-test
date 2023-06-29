@@ -22,18 +22,20 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Salads = ({navigation}) => {
+
+  
   const [w, setW] = useState(143)
   const dispatch = useDispatch()
   const subject = useSelector((state) => state.subject)
-
-const maxOnPress = () => {
+  
+  const maxOnPress = () => {
     LayoutAnimation.spring();
     if(w === 117) {
       setW(w + 26)
     }else{
-
+      
     }
-}
+  }
 
 
 const minOnPress = (x) => {
@@ -67,17 +69,26 @@ const minOnPress = (x) => {
 
         const [more, setMore] = useState(null)
         const [bigImg, setBigImg] = useState(null)
-
+        
         const moreFunction = (index) => {
           if(more === index){
-              setMore(null)
+            setMore(null)
           } else {
             setMore(index)
           }
         }
         
         const bigImgFunction = (index) => {
-          LayoutAnimation.spring();
+          LayoutAnimation.easeInEaseOut();
+          LayoutAnimation.configureNext({
+            duration: 150,
+            update: {
+              type: LayoutAnimation.Types.easeInEaseOut,
+              property: LayoutAnimation.Properties.opacity,
+              opacity: 0,
+          
+            },
+          }); 
           if(bigImg === index) {
             setBigImg(null)
           }else{
@@ -95,7 +106,7 @@ const minOnPress = (x) => {
         <Name stroke="currentColor" style={styles.name} />
       }
         <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={[styles.input, {paddingLeft:24}]} placeholder='Поиск' />
+        <TextInput style={styles.input} placeholder='Поиск' />
         {subject ?
        <SearchIconWhite style={styles.icon} />  
        :

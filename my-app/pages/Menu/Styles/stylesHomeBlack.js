@@ -24,6 +24,7 @@ export const stylesHomeBlack = {
         color:"#fff",
         borderWidth:2,
         borderColor:"#000000",
+        paddingLeft:24
       },
       name:{
         marginTop:64,

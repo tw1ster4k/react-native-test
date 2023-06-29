@@ -23,6 +23,7 @@ export const stylesSaladsWhite = {
         borderWidth:2,
         borderColor:"#bbb",
         color:"#1c1c1c",
+        paddingLeft:24
       },
       name:{
         marginTop:64,
@@ -46,7 +47,7 @@ export const stylesSaladsWhite = {
         borderRadius:10,
         borderWidth:2,
         borderColor:"#bbb",
-        height:118
+        height:"auto"
       },
       title:{
         fontWeight:600,
