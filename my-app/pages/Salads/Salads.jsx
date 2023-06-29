@@ -53,9 +53,11 @@ const minOnPress = (x) => {
 
 
 
-        const salads = useSelector((state) => state.salads)
+        const salad = useSelector((state) => state.salads)
         const price = useSelector((state) => state.price)
         const basket = useSelector((state) => state.favorites)
+
+        const [salads, setSalads] = useState(salad)
 
         const handleMinOnPress = (type, data, x) => {
           minOnPress(x);
@@ -75,6 +77,15 @@ const minOnPress = (x) => {
             setMore(null)
           } else {
             setMore(index)
+          }
+        }
+
+        const FilterSalads = (event) => {
+          if(event.target.value === "") {
+            setSalads(salad)
+          }else{
+            let arr = salad.filter((el) => el.title.toLowerCase().includes(event.target.value.toLowerCase()))
+            setSalads(arr)
           }
         }
         
@@ -106,7 +117,7 @@ const minOnPress = (x) => {
         <Name stroke="currentColor" style={styles.name} />
       }
         <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={styles.input} placeholder='Поиск' />
+        <TextInput style={styles.input} placeholder='Поиск'  onChange={FilterSalads} />
         {subject ?
        <SearchIconWhite style={styles.icon} />  
        :
